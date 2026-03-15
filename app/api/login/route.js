@@ -13,13 +13,14 @@ export async function POST(req) {
       )
     }
 
-    // Set cookie
-    cookies().set('session', email, {
+    const response = NextResponse.json({ success: true })
+    
+    response.cookies.set('session', email, {
       httpOnly: true,
       path: '/',
     })
 
-    return NextResponse.json({ success: true })
+    return response
 
   } catch (error) {
     return NextResponse.json(
